@@ -104,6 +104,10 @@ file inside your source code repository.
     This variable set to `true` indicates that the asset compilation process will be skipped. Since this only takes place
     when the application is run in the `production` environment, it should only be used when assets are already compiled.
 
+* **PUMA_MIN_THREADS**, **PUMA_MAX_THREADS**
+
+    These variables indicate the minimum and maximum threads that will be available in Puma's thread pool.
+
 Hot deploy
 ---------------------
 In order to dynamically pick up changes made in your application source code, you need to make following steps:
