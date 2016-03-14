@@ -33,10 +33,10 @@ set -e
 export RACK_ENV=${RACK_ENV:-"production"}
 
 if is_puma_installed; then
-  if ! export_memory_limit; then
+  if ! cgroups::export_memory_limit; then
     echo "Warning: Can't detect memory limit"
   fi
-  if ! export_number_of_cores; then
+  if ! cgroups::export_number_of_cores; then
     echo "Warning: Can't detect number of cores"
   fi
   exec bundle exec "puma --config ../etc/puma.cfg"
