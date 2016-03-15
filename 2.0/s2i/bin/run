@@ -36,7 +36,7 @@ if is_puma_installed; then
   set -x
   cgroup-limits.py
   set +x
-  export $(cgroup-limits.py)
+  export $(/usr/bin/cgroup-limits.py)
 
   if [[ -z "${MEMORY_LIMIT_IN_BYTES:-}" ]]; then
     echo "Warning: Can't detect memory limit"
