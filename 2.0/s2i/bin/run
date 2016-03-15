@@ -33,6 +33,9 @@ set -e
 export RACK_ENV=${RACK_ENV:-"production"}
 
 if is_puma_installed; then
+  set -x
+  cgroup-limits.py
+  set +x
   export $(cgroup-limits.py)
 
   if [[ -z "${MEMORY_LIMIT_IN_BYTES:-}" ]]; then
