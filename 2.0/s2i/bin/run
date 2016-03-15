@@ -34,9 +34,9 @@ export RACK_ENV=${RACK_ENV:-"production"}
 
 if is_puma_installed; then
   set -x
-  cgroup-limits.py
+  /usr/bin/cgroup-limits.py
   set +x
-  export $(/usr/bin/cgroup-limits.py)
+  export $(cgroup-limits.py)
 
   if [[ -z "${MEMORY_LIMIT_IN_BYTES:-}" ]]; then
     echo "Warning: Can't detect memory limit"
