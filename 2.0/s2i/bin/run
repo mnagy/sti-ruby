@@ -33,8 +33,8 @@ set -e
 export RACK_ENV=${RACK_ENV:-"production"}
 
 if is_puma_installed; then
-  export MEMORY_LIMIT_IN_BYTES=`cgroups::export_memory_limit`
-  export NUMBER_OF_CORES=`cgroups:export_number_of_cores`
+  export MEMORY_LIMIT_IN_BYTES=`cgroups::get_memory_limit`
+  export NUMBER_OF_CORES=`cgroups:get_number_of_cores`
 
   if [[ -z "$MEMORY_LIMIT_IN_BYTES" ]]; then
     echo "Warning: Can't detect memory limit"
