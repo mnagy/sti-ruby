@@ -33,12 +33,16 @@ set -e
 export RACK_ENV=${RACK_ENV:-"production"}
 
 if is_puma_installed; then
-  if ! cgroups::export_memory_limit; then
+  export MEMORY_LIMIT_IN_BYTES=`cgroups::export_memory_limit`
+  export NUMBER_OF_CORES=`cgroups:export_number_of_cores`
+
+  if [[ -z "$MEMORY_LIMIT_IN_BYTES" ]]; then
     echo "Warning: Can't detect memory limit"
   fi
-  if ! cgroups::export_number_of_cores; then
+  if [[ -z "$NUMBER_OF_CORES" ]]; then
     echo "Warning: Can't detect number of cores"
   fi
+
   exec bundle exec "puma --config ../etc/puma.cfg"
 else
   echo "You might consider adding 'puma' into your Gemfile."
