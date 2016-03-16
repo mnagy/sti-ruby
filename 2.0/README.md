@@ -139,3 +139,7 @@ docker exec -it <CONTAINER_ID> /bin/bash
 
 After you [Docker exec](http://docker.io) into the running container, your current
 directory is set to `/opt/app-root/src`, where the source code is located.
+
+Performance tuning
+---------------------
+You can tune the number of worker threads per worker using the **PUMA_MIN_THREADS** and **PUMA_MAX_THREADS** environment variables. Additionally, the number of worker processes is determined by the number of CPU cores that he container has available. This is determined using the cgroups CPU subsystem, the cpuset. You can specify the cores that the container is allowed to use by passing the `--cpuset-cpus` parameter to docker run.
